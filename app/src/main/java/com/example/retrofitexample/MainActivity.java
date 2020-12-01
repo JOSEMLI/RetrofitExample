@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private ListView lvTodos;
     Activity activity;
 
-    public String id;
+    public String complet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,8 +58,13 @@ public class MainActivity extends AppCompatActivity {
 
                         Intent detalleitem = new Intent(MainActivity.this,VerDetalle.class);
                         detalleitem.putExtra("idtitulo",response.body().get(i).getTitle());
-                        detalleitem.putExtra("idauthor", response.body().get(i).getUserID());
-                        detalleitem.putExtra("idtipo", response.body().get(i).getCompleted());
+                        detalleitem.putExtra("idauthor", Integer.toString(response.body().get(i).getUserID()));
+                        if(response.body().get(i).getCompleted()){
+                            complet = "Completed";
+                        }else{
+                            complet = "Uncompleted";
+                        }
+                        detalleitem.putExtra("idtipo", complet);
                         startActivity(detalleitem);
 
 

@@ -35,9 +35,9 @@ public class VerDetalle extends AppCompatActivity {
     protected void vercontenido()
     {
        Bundle bundle = getIntent().getExtras();
-       bundle.getString("idtitulo");
-        bundle.getString("idauthor");
-        bundle.getString("idtipo");
+        idtitulo.setText(bundle.getString("idtitulo"));
+        idauthor.setText(bundle.getString("idauthor"));
+        idtipo.setText(bundle.getString("idtipo"));
 
     }
 
