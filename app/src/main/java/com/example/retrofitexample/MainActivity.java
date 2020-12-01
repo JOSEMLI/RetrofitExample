@@ -3,6 +3,7 @@ package com.example.retrofitexample;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
 
     private ListView lvTodos;
     Activity activity;
+
+    public String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,15 @@ public class MainActivity extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         Toast.makeText(getApplicationContext(), response.body().get(i).getTitle()
                                 , Toast.LENGTH_SHORT).show();
+
+                        Intent detalleitem = new Intent(MainActivity.this,VerDetalle.class);
+                        detalleitem.putExtra("idtitulo",response.body().get(i).getTitle());
+                        detalleitem.putExtra("idauthor", response.body().get(i).getUserID());
+                        detalleitem.putExtra("idtipo", response.body().get(i).getCompleted());
+                        startActivity(detalleitem);
+
+
+
                     }
                 });
 
